@@ -25,18 +25,21 @@ const Home = () => {
 
       {/* Video Section */}
       <div className="relative w-full h-[500px] md:h-screen">
-        <video
-          className="w-full h-full object-cover"
-          autoPlay
-          loop
-          muted
-        >
-          <source src={homevideo} type="video/mp4" />
-        </video>
-        <div className="absolute inset-0 flex items-center justify-center">
-          <h1 className="text-[#fcb040] text-3xl md:text-5xl font-bold text-center px-4">
-            Go Forward! MOVE FORWARD!!
-          </h1>
+        <div className="relative w-full h-[500px] md:h-screen">
+          <video className="w-full h-full object-cover" autoPlay loop muted>
+            <source src={homevideo} type="video/mp4" />
+          </video>
+
+          {/* Dark overlay */}
+          <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+          <div className="absolute inset-0 flex flex-col gap-y-[20px] items-center justify-center">
+            <h1 className="text-[#fcb040] text-3xl md:text-5xl font-bold font-bitter text-center px-4">
+              Go Forward. Move Forward!!
+            </h1>
+            <h1 className="text-white text-3xl md:text-3xl font-bold font-bitter text-center px-4">
+              Shree Testing Secondary School
+            </h1>
+          </div>
         </div>
       </div>
 

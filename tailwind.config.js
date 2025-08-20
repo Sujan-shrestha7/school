@@ -5,7 +5,11 @@ export default {
     "./src/**/*.{js,ts,tsx,html}",
   ],
   theme: {
-    extend: {},
+    extend:  {
+      fontFamily: {
+        bitter: ["Bitter", "serif"],
+      },
+    },
   },
   plugins: [],
 }
