@@ -75,6 +75,14 @@ const Header = () => {
               )}
             </div>
 
+            <div className="relative">
+              <p
+                className="cursor-pointer hover:text-gray-400 select-none"
+              >
+                Gallery
+              </p>
+            </div>
+
             {/* Contact Us */}
             <div className="relative">
               <p
