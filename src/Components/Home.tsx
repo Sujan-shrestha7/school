@@ -44,22 +44,39 @@ const Home = () => {
       </div>
 
       {/* Events / News Section */}
-      <div className="my-16 px-4 md:px-20 flex flex-col md:flex-row gap-10 justify-center">
-        {events.map((item, index) => (
-          <div key={index} className="flex-1 flex flex-col gap-4">
-            <h2 className="font-semibold text-xl text-[#10507a]">
-              {item.title}
-            </h2>
-            <div className="flex gap-4">
-              <img
-                src={item.img}
-                alt={`${item.title} Image`}
-                className="h-24 w-32 object-cover rounded"
-              />
-              <p className="text-gray-700">{item.description}</p>
+      <div className="my-16 px-4 md:px-[150px] flex flex-col md:flex-row gap-20 justify-center">
+        <div className="flex-1 flex flex-col gap-4 gap-y-6">
+          <h2 className="font-semibold text-xl text-[#10507a]">
+            EVENTS/ NOTICE
+          </h2>
+          <div className="flex gap-4">
+            <img src={homeimg} className="h-24 w-32 object-cover rounded" />
+            <div>
+              <a href="" className="font-bold  text-[20px] text-[#10507a]">
+                Lorem ipsum dolor sit amet.
+              </a>
+              <p className="text-gray-700 text-justify">
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam
+                consectetur quasi dicta quaerat enim quod, inventore expedita
+              </p>
             </div>
           </div>
-        ))}
+        </div>
+        <div className="flex-1 flex flex-col gap-4 gap-y-6">
+          <h2 className="font-semibold text-xl text-[#10507a]">NEWS</h2>
+          <div className="flex gap-4">
+            <img src={homeimg} className="h-24 w-32 object-cover rounded" />
+            <div>
+              <a href="" className="font-bold  text-[20px] text-[#10507a]">
+                Lorem ipsum dolor sit amet.
+              </a>
+              <p className="text-gray-700 text-justify">
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam
+                consectetur quasi dicta quaerat enim quod, inventore expedita
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
