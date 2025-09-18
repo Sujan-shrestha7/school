@@ -8,6 +8,8 @@ const Router = () => {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home/>}></Route>
+          <Route path="/header" element={<Header/>}></Route>
+          <Route path="/footer" element={<Footer/>}></Route>
         </Routes>
       </BrowserRouter>
     </div>

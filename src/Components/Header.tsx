@@ -3,12 +3,14 @@ import { useNavigate } from "react-router-dom";
 import logo from "../assets/images/maxhub.png";
 import { FaFacebook, FaYoutube, FaLinkedin, FaInfoCircle, FaBell, FaPhone } from "react-icons/fa";
 
-const Header = () => {
+type DropdownMenu = "about" | "notice" | "contact" | null;
+
+const Header = (): JSX.Element => {
   const navigate = useNavigate();
 
-  const [openDropdown, setOpenDropdown] = useState(null);
+  const [openDropdown, setOpenDropdown] = useState<DropdownMenu>(null);
 
-  const toggleDropdown = (menu) => {
+  const toggleDropdown = (menu: DropdownMenu) => {
     if (openDropdown === menu) {
       setOpenDropdown(null);
     } else {
@@ -36,16 +38,28 @@ const Header = () => {
               {openDropdown === "about" && (
                 <div className="absolute top-full mt-1 bg-[#20265B] border border-gray-700 rounded shadow-lg w-[160px] z-20">
                   <ul>
-                    <li className="flex items-center gap-2 px-4 py-2 hover:bg-gray-700 cursor-pointer" onClick={() => navigate("/about/company")}>
+                    <li
+                      className="flex items-center gap-2 px-4 py-2 hover:bg-gray-700 cursor-pointer"
+                      onClick={() => navigate("/about/company")}
+                    >
                       <FaInfoCircle /> Academic
                     </li>
-                    <li className="flex items-center gap-2 px-4 py-2 hover:bg-gray-700 cursor-pointer" onClick={() => navigate("/about/team")}>
-                      <FaInfoCircle />Mission & Vision
+                    <li
+                      className="flex items-center gap-2 px-4 py-2 hover:bg-gray-700 cursor-pointer"
+                      onClick={() => navigate("/about/team")}
+                    >
+                      <FaInfoCircle /> Mission & Vision
                     </li>
-                    <li className="flex items-center gap-2 px-4 py-2 hover:bg-gray-700 cursor-pointer" onClick={() => navigate("/about/team")}>
+                    <li
+                      className="flex items-center gap-2 px-4 py-2 hover:bg-gray-700 cursor-pointer"
+                      onClick={() => navigate("/about/team")}
+                    >
                       <FaInfoCircle /> Staffs
                     </li>
-                    <li className="flex items-center gap-2 px-4 py-2 hover:bg-gray-700 cursor-pointer" onClick={() => navigate("/about/team")}>
+                    <li
+                      className="flex items-center gap-2 px-4 py-2 hover:bg-gray-700 cursor-pointer"
+                      onClick={() => navigate("/about/team")}
+                    >
                       <FaInfoCircle /> Gallery
                     </li>
                   </ul>
@@ -64,10 +78,16 @@ const Header = () => {
               {openDropdown === "notice" && (
                 <div className="absolute top-full mt-1 bg-[#20265B] border border-gray-700 rounded shadow-lg w-[160px] z-20">
                   <ul>
-                    <li className="flex items-center gap-2 px-4 py-2 hover:bg-gray-700 cursor-pointer" onClick={() => navigate("/notice/latest")}>
+                    <li
+                      className="flex items-center gap-2 px-4 py-2 hover:bg-gray-700 cursor-pointer"
+                      onClick={() => navigate("/notice/latest")}
+                    >
                       <FaBell /> Latest
                     </li>
-                    <li className="flex items-center gap-2 px-4 py-2 hover:bg-gray-700 cursor-pointer" onClick={() => navigate("/notice/archive")}>
+                    <li
+                      className="flex items-center gap-2 px-4 py-2 hover:bg-gray-700 cursor-pointer"
+                      onClick={() => navigate("/notice/archive")}
+                    >
                       <FaBell /> Archive
                     </li>
                   </ul>
@@ -75,12 +95,9 @@ const Header = () => {
               )}
             </div>
 
+            {/* Gallery */}
             <div className="relative">
-              <p
-                className="cursor-pointer hover:text-gray-400 select-none"
-              >
-                Gallery
-              </p>
+              <p className="cursor-pointer hover:text-gray-400 select-none">Gallery</p>
             </div>
 
             {/* Contact Us */}
@@ -94,10 +111,16 @@ const Header = () => {
               {openDropdown === "contact" && (
                 <div className="absolute top-full mt-1 bg-[#20265B] border border-gray-700 rounded shadow-lg w-[160px] z-20">
                   <ul>
-                    <li className="flex items-center gap-2 px-4 py-2 hover:bg-gray-700 cursor-pointer" onClick={() => navigate("/contact/email")}>
+                    <li
+                      className="flex items-center gap-2 px-4 py-2 hover:bg-gray-700 cursor-pointer"
+                      onClick={() => navigate("/contact/email")}
+                    >
                       <FaPhone /> Email
                     </li>
-                    <li className="flex items-center gap-2 px-4 py-2 hover:bg-gray-700 cursor-pointer" onClick={() => navigate("/contact/phone")}>
+                    <li
+                      className="flex items-center gap-2 px-4 py-2 hover:bg-gray-700 cursor-pointer"
+                      onClick={() => navigate("/contact/phone")}
+                    >
                       <FaPhone /> Phone
                     </li>
                   </ul>
@@ -108,7 +131,7 @@ const Header = () => {
         </div>
       </div>
 
-      {/* The bottom bar stays the same */}
+      {/* Bottom bar */}
       <div className="flex flex-wrap justify-between items-center h-[35px] w-full px-[200px]">
         <div className="flex flex-wrap justify-center items-center gap-[15px]">
           <a
@@ -118,18 +141,36 @@ const Header = () => {
             mail@gmail.com
           </a>
           <div className="w-[2px] h-[20px] bg-[#2E65B8]"></div>
-          <a href="tel:9823252414" className="no-underline text-white hover:text-gray-400">
+          <a
+            href="tel:9823252414"
+            className="no-underline text-white hover:text-gray-400"
+          >
             Contact: 9823252414
           </a>
         </div>
         <div className="flex gap-[20px] text-white text-[25px]">
-          <a href="https://facebook.com" target="_blank" aria-label="Facebook" rel="noopener noreferrer">
+          <a
+            href="https://facebook.com"
+            target="_blank"
+            aria-label="Facebook"
+            rel="noopener noreferrer"
+          >
             <FaFacebook className="text-white" />
           </a>
-          <a href="https://youtube.com" target="_blank" aria-label="YouTube" rel="noopener noreferrer">
+          <a
+            href="https://youtube.com"
+            target="_blank"
+            aria-label="YouTube"
+            rel="noopener noreferrer"
+          >
             <FaYoutube className="text-white" />
           </a>
-          <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn" rel="noopener noreferrer">
+          <a
+            href="https://linkedin.com"
+            target="_blank"
+            aria-label="LinkedIn"
+            rel="noopener noreferrer"
+          >
             <FaLinkedin className="text-white" />
           </a>
         </div>

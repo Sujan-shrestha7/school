@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Header from "./Header";
 import homeimg from "../assets/images/home.jpg";
 import homevideo from "../assets/videos/video2.mp4";
