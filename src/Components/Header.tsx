@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import logo from "../assets/images/logo.png";
+import logo from "../assets/images/maxhub.png";
 import { FaFacebook, FaYoutube, FaLinkedin, FaInfoCircle, FaBell, FaPhone } from "react-icons/fa";
 
 const Header = () => {
@@ -17,11 +17,11 @@ const Header = () => {
   };
 
   return (
-    <div className="fixed top-0 left-0 w-full z-50 bg-white shadow-md">
-      <div className="w-full h-[80px] bg-[#20265B]">
+    <div className="absolute top-0 left-0 w-full z-50 ">
+      <div className="w-full h-[80px] bg-transparent">
         <div className="flex justify-between items-center px-[100px] h-full">
           <div className="flex items-center">
-            <img src={logo} className="h-[55px] w-[300px]" alt="Logo" />
+            <img src={logo} className="h-[145px] w-[300px]" alt="Logo" />
           </div>
 
           <div className="header-info text-white flex gap-[25px] items-center mr-[40px] relative">
@@ -113,24 +113,24 @@ const Header = () => {
         <div className="flex flex-wrap justify-center items-center gap-[15px]">
           <a
             href="mailto:mail@gmail.com"
-            className="hover:text-gray-400 no-underline"
+            className="text-white hover:text-gray-400 no-underline"
           >
             mail@gmail.com
           </a>
           <div className="w-[2px] h-[20px] bg-[#2E65B8]"></div>
-          <a href="tel:9823252414" className="no-underline hover:text-gray-400">
+          <a href="tel:9823252414" className="no-underline text-white hover:text-gray-400">
             Contact: 9823252414
           </a>
         </div>
-        <div className="flex gap-[20px] text-[25px]">
+        <div className="flex gap-[20px] text-white text-[25px]">
           <a href="https://facebook.com" target="_blank" aria-label="Facebook" rel="noopener noreferrer">
-            <FaFacebook color="#000000ff" />
+            <FaFacebook className="text-white" />
           </a>
           <a href="https://youtube.com" target="_blank" aria-label="YouTube" rel="noopener noreferrer">
-            <FaYoutube color="#000000ff" />
+            <FaYoutube className="text-white" />
           </a>
           <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn" rel="noopener noreferrer">
-            <FaLinkedin color="#000509ff" />
+            <FaLinkedin className="text-white" />
           </a>
         </div>
       </div>
