@@ -6,18 +6,31 @@ import {
   FaYoutube,
   FaLinkedin,
   FaInfoCircle,
+  FaBars,
+  FaTimes,
 } from "react-icons/fa";
 
 type DropdownMenu = "products" | "support" | "explore" | "partner" | null;
 
+interface MenuItem {
+  label: string;
+  path: string;
+}
+
+interface MenuGroup {
+  name: string;
+  key: Exclude<DropdownMenu, null>; 
+  items: MenuItem[];
+}
+
 const Header = (): JSX.Element => {
   const navigate = useNavigate();
   const [openDropdown, setOpenDropdown] = useState<DropdownMenu>(null);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  // ref for the dropdown wrapper
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  // Close dropdown when clicking outside
+  // Close dropdown when clicking outside (desktop only)
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -27,204 +40,183 @@ const Header = (): JSX.Element => {
         setOpenDropdown(null);
       }
     };
-
     document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  const menuItems: MenuGroup[] = [
+    {
+      name: "Products",
+      key: "products",
+      items: [
+        { label: "Interactive Flat Panel", path: "/about/company" },
+        { label: "Studio Setup", path: "/about/team" },
+        { label: "Video Conference Camera", path: "/about/team" },
+        { label: "Gallery", path: "/about/team" },
+      ],
+    },
+    {
+      name: "Support",
+      key: "support",
+      items: [
+        { label: "Docs", path: "/about/company" },
+        { label: "Help Center", path: "/about/team" },
+      ],
+    },
+    {
+      name: "Explore",
+      key: "explore",
+      items: [
+        { label: "Blog", path: "/about/company" },
+        { label: "News", path: "/about/team" },
+      ],
+    },
+    {
+      name: "Our Partners",
+      key: "partner",
+      items: [
+        { label: "Partner 1", path: "/about/company" },
+        { label: "Partner 2", path: "/about/team" },
+      ],
+    },
+  ];
+
   return (
-    <div className="absolute top-0 left-0 w-full z-50" ref={dropdownRef}>
-      <div className="w-full h-[80px] bg-transparent">
-        <div className="flex justify-between items-center px-[100px] h-full">
+    <header className="absolute top-0 left-0 w-full z-50" ref={dropdownRef}>
+      {/* Top Header */}
+      <div className="w-full bg-transparent">
+        <div className="flex justify-between items-center px-6 md:px-[100px] h-[80px]">
           {/* Logo */}
-          <div className="flex items-center">
-            <img src={logo} className="h-[145px] w-[300px]" alt="Logo" />
-          </div>
+          <img
+            src={logo}
+            className="h-[80px] w-[160px] md:h-[145px] md:w-[300px] object-contain"
+            alt="Logo"
+          />
 
-          {/* Navigation */}
-          <div className="header-info text-white flex gap-[25px] items-center mr-[40px] relative">
-            {/** Products */}
-            <div className="relative">
-              <p
-                className="cursor-pointer hover:text-gray-400 select-none"
-                onClick={() =>
-                  setOpenDropdown(openDropdown === "products" ? null : "products")
-                }
+          {/* Desktop Menu */}
+          <nav className="hidden md:flex gap-[25px] items-center text-white relative">
+            {menuItems.map((menu) => (
+              <div
+                key={menu.key}
+                className="relative"
+                onMouseEnter={() => setOpenDropdown(menu.key)}
+                onMouseLeave={() => setOpenDropdown(null)}
               >
-                Products
-              </p>
-              {openDropdown === "products" && (
-                <div className="absolute top-full mt-1 bg-[#a7aba8] rounded shadow-lg md:w-[200px] z-20">
-                  <ul>
-                    <li
-                      className="flex items-center gap-2 px-4 py-2 hover:bg-gray-700 cursor-pointer"
-                      onClick={() => navigate("/about/company")}
-                    >
-                      <FaInfoCircle /> Interactive Flat Panel
-                    </li>
-                    <li
-                      className="flex items-center gap-2 px-4 py-2 hover:bg-gray-700 cursor-pointer"
-                      onClick={() => navigate("/about/team")}
-                    >
-                      <FaInfoCircle /> Studio Setup
-                    </li>
-                    <li
-                      className="flex items-center gap-2 px-4 py-2 hover:bg-gray-700 cursor-pointer"
-                      onClick={() => navigate("/about/team")}
-                    >
-                      <FaInfoCircle /> Video Conference Camera
-                    </li>
-                    <li
-                      className="flex items-center gap-2 px-4 py-2 hover:bg-gray-700 cursor-pointer"
-                      onClick={() => navigate("/about/team")}
-                    >
-                      <FaInfoCircle /> Gallery
-                    </li>
-                  </ul>
-                </div>
-              )}
-            </div>
+                <p className="cursor-pointer hover:text-gray-300 select-none transition-colors">
+                  {menu.name}
+                </p>
+                {openDropdown === menu.key && (
+                  <div className="absolute top-full mt-1 bg-[#2c2c2c] rounded-lg shadow-lg w-[220px] z-20">
+                    <ul className="py-2">
+                      {menu.items.map((item, index) => (
+                        <li
+                          key={index}
+                          className="flex items-center gap-2 px-4 py-2 hover:bg-gray-700 cursor-pointer transition-colors"
+                          onClick={() => navigate(item.path)}
+                        >
+                          <FaInfoCircle /> {item.label}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
+            ))}
+          </nav>
 
-            {/** Support */}
-            <div className="relative">
-              <p
-                className="cursor-pointer hover:text-gray-400 select-none"
-                onClick={() =>
-                  setOpenDropdown(openDropdown === "support" ? null : "support")
-                }
-              >
-                Support
-              </p>
-              {openDropdown === "support" && (
-                <div className="absolute top-full mt-1 bg-[#a7aba8] rounded shadow-lg md:w-[200px] z-20">
-                  <ul>
-                    <li
-                      className="flex items-center gap-2 px-4 py-2 hover:bg-gray-700 cursor-pointer"
-                      onClick={() => navigate("/about/company")}
-                    >
-                      <FaInfoCircle /> Docs
-                    </li>
-                    <li
-                      className="flex items-center gap-2 px-4 py-2 hover:bg-gray-700 cursor-pointer"
-                      onClick={() => navigate("/about/team")}
-                    >
-                      <FaInfoCircle /> Help Center
-                    </li>
-                  </ul>
-                </div>
-              )}
-            </div>
-
-            {/** Explore */}
-            <div className="relative">
-              <p
-                className="cursor-pointer hover:text-gray-400 select-none"
-                onClick={() =>
-                  setOpenDropdown(openDropdown === "explore" ? null : "explore")
-                }
-              >
-                Explore
-              </p>
-              {openDropdown === "explore" && (
-                <div className="absolute top-full mt-1 bg-[#a7aba8] rounded shadow-lg md:w-[200px] z-20">
-                  <ul>
-                    <li
-                      className="flex items-center gap-2 px-4 py-2 hover:bg-gray-700 cursor-pointer"
-                      onClick={() => navigate("/about/company")}
-                    >
-                      <FaInfoCircle /> Blog
-                    </li>
-                    <li
-                      className="flex items-center gap-2 px-4 py-2 hover:bg-gray-700 cursor-pointer"
-                      onClick={() => navigate("/about/team")}
-                    >
-                      <FaInfoCircle /> News
-                    </li>
-                  </ul>
-                </div>
-              )}
-            </div>
-
-            {/** Partners */}
-            <div className="relative">
-              <p
-                className="cursor-pointer hover:text-gray-400 select-none"
-                onClick={() =>
-                  setOpenDropdown(openDropdown === "partner" ? null : "partner")
-                }
-              >
-                Our Partners
-              </p>
-              {openDropdown === "partner" && (
-                <div className="absolute top-full mt-1 bg-[#a7aba8] rounded shadow-lg md:w-[200px] z-20">
-                  <ul>
-                    <li
-                      className="flex items-center gap-2 px-4 py-2 hover:bg-gray-700 cursor-pointer"
-                      onClick={() => navigate("/about/company")}
-                    >
-                      <FaInfoCircle /> Partner 1
-                    </li>
-                    <li
-                      className="flex items-center gap-2 px-4 py-2 hover:bg-gray-700 cursor-pointer"
-                      onClick={() => navigate("/about/team")}
-                    >
-                      <FaInfoCircle /> Partner 2
-                    </li>
-                  </ul>
-                </div>
-              )}
-            </div>
-          </div>
+          {/* Mobile Hamburger */}
+          <button
+            className="text-white text-2xl md:hidden"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle Menu"
+          >
+            {mobileMenuOpen ? <FaTimes /> : <FaBars />}
+          </button>
         </div>
+
+        {/* Mobile Dropdown Menu */}
+        {mobileMenuOpen && (
+          <div className="bg-[#1e1e1e] text-white flex flex-col px-6 py-4 space-y-3 md:hidden">
+            {menuItems.map((menu) => (
+              <div key={menu.key} className="border-b border-gray-700 pb-2">
+                <p
+                  className="cursor-pointer flex justify-between items-center font-medium"
+                  onClick={() =>
+                    setOpenDropdown(openDropdown === menu.key ? null : menu.key)
+                  }
+                >
+                  {menu.name}
+                </p>
+                {openDropdown === menu.key && (
+                  <ul className="ml-4 mt-2 space-y-2">
+                    {menu.items.map((item, index) => (
+                      <li
+                        key={index}
+                        className="flex items-center gap-2 hover:text-gray-400 cursor-pointer"
+                        onClick={() => {
+                          navigate(item.path);
+                          setMobileMenuOpen(false);
+                        }}
+                      >
+                        <FaInfoCircle /> {item.label}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            ))}
+          </div>
+        )}
       </div>
 
-      {/* Bottom bar */}
-      <div className="flex flex-wrap justify-between items-center h-[35px] w-full px-[200px]">
-        <div className="flex flex-wrap justify-center items-center gap-[15px]">
+      {/* Bottom Bar */}
+      <div className="flex flex-wrap justify-between items-center h-[40px] w-full px-6 md:px-[200px] bg-transparent">
+        <div className="flex flex-wrap items-center gap-3 text-sm md:gap-[15px] text-white">
           <a
             href="mailto:mail@gmail.com"
-            className="text-white hover:text-gray-400 no-underline"
+            className="hover:text-gray-300 transition-colors"
           >
             mail@gmail.com
           </a>
-          <div className="w-[2px] h-[20px] bg-[#2E65B8]"></div>
+          <div className="hidden md:block w-[2px] h-[20px] bg-[#2E65B8]"></div>
           <a
             href="tel:9823252414"
-            className="no-underline text-white hover:text-gray-400"
+            className="hover:text-gray-300 transition-colors"
           >
             Contact: 9823252414
           </a>
         </div>
-        <div className="flex gap-[20px] text-white text-[25px]">
+        <div className="flex gap-4 md:gap-[20px] text-white text-[20px] md:text-[25px]">
           <a
             href="https://facebook.com"
             target="_blank"
             aria-label="Facebook"
             rel="noopener noreferrer"
+            className="hover:text-gray-300 transition-colors"
           >
-            <FaFacebook className="text-white" />
+            <FaFacebook />
           </a>
           <a
             href="https://youtube.com"
             target="_blank"
             aria-label="YouTube"
             rel="noopener noreferrer"
+            className="hover:text-gray-300 transition-colors"
           >
-            <FaYoutube className="text-white" />
+            <FaYoutube />
           </a>
           <a
             href="https://linkedin.com"
             target="_blank"
             aria-label="LinkedIn"
             rel="noopener noreferrer"
+            className="hover:text-gray-300 transition-colors"
           >
-            <FaLinkedin className="text-white" />
+            <FaLinkedin />
           </a>
         </div>
       </div>
-    </div>
+    </header>
   );
 };
 
