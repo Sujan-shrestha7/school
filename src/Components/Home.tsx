@@ -60,7 +60,7 @@ const Home = () => {
 
       {/* Events / FEATURES Section */}
       <div className="my-16 md:pl-[200px] px-[20px] flex flex-col md:flex-row gap-[50px]">
-        <div className="w-full md:w-[500px] h-screen flex flex-col gap-20 md:pt-[150px] md:pr-[0px] justify-center">
+        <div className="w-full md:w-[500px] h-screen flex flex-col gap-20 pt-[100px] md:pt-[150px] md:pr-[0px] justify-center">
           <div className="flex-1 flex flex-col gap-4 gap-y-6">
             <h2 className="font-semibold text-xl text-center text-[#10507a]">
               EVENTS/ NOTICE
