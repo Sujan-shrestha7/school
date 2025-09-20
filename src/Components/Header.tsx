@@ -1,60 +1,80 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import logo from "../assets/images/maxhub.png";
-import { FaFacebook, FaYoutube, FaLinkedin, FaInfoCircle, FaBell, FaPhone } from "react-icons/fa";
+import {
+  FaFacebook,
+  FaYoutube,
+  FaLinkedin,
+  FaInfoCircle,
+} from "react-icons/fa";
 
-type DropdownMenu = "about" | "notice" | "contact" | null;
+type DropdownMenu = "products" | "support" | "explore" | "partner" | null;
 
 const Header = (): JSX.Element => {
   const navigate = useNavigate();
-
   const [openDropdown, setOpenDropdown] = useState<DropdownMenu>(null);
 
-  const toggleDropdown = (menu: DropdownMenu) => {
-    if (openDropdown === menu) {
-      setOpenDropdown(null);
-    } else {
-      setOpenDropdown(menu);
-    }
-  };
+  // ref for the dropdown wrapper
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setOpenDropdown(null);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
-    <div className="absolute top-0 left-0 w-full z-50 ">
+    <div className="absolute top-0 left-0 w-full z-50" ref={dropdownRef}>
       <div className="w-full h-[80px] bg-transparent">
         <div className="flex justify-between items-center px-[100px] h-full">
+          {/* Logo */}
           <div className="flex items-center">
             <img src={logo} className="h-[145px] w-[300px]" alt="Logo" />
           </div>
 
+          {/* Navigation */}
           <div className="header-info text-white flex gap-[25px] items-center mr-[40px] relative">
-            {/* About Us */}
+            {/** Products */}
             <div className="relative">
               <p
                 className="cursor-pointer hover:text-gray-400 select-none"
-                onClick={() => toggleDropdown("about")}
+                onClick={() =>
+                  setOpenDropdown(openDropdown === "products" ? null : "products")
+                }
               >
-                About Us ▼
+                Products
               </p>
-              {openDropdown === "about" && (
-                <div className="absolute top-full mt-1 bg-[#20265B] border border-gray-700 rounded shadow-lg w-[160px] z-20">
+              {openDropdown === "products" && (
+                <div className="absolute top-full mt-1 bg-[#a7aba8] rounded shadow-lg md:w-[200px] z-20">
                   <ul>
                     <li
                       className="flex items-center gap-2 px-4 py-2 hover:bg-gray-700 cursor-pointer"
                       onClick={() => navigate("/about/company")}
                     >
-                      <FaInfoCircle /> Academic
+                      <FaInfoCircle /> Interactive Flat Panel
                     </li>
                     <li
                       className="flex items-center gap-2 px-4 py-2 hover:bg-gray-700 cursor-pointer"
                       onClick={() => navigate("/about/team")}
                     >
-                      <FaInfoCircle /> Mission & Vision
+                      <FaInfoCircle /> Studio Setup
                     </li>
                     <li
                       className="flex items-center gap-2 px-4 py-2 hover:bg-gray-700 cursor-pointer"
                       onClick={() => navigate("/about/team")}
                     >
-                      <FaInfoCircle /> Staffs
+                      <FaInfoCircle /> Video Conference Camera
                     </li>
                     <li
                       className="flex items-center gap-2 px-4 py-2 hover:bg-gray-700 cursor-pointer"
@@ -67,61 +87,90 @@ const Header = (): JSX.Element => {
               )}
             </div>
 
-            {/* Notice */}
+            {/** Support */}
             <div className="relative">
               <p
                 className="cursor-pointer hover:text-gray-400 select-none"
-                onClick={() => toggleDropdown("notice")}
+                onClick={() =>
+                  setOpenDropdown(openDropdown === "support" ? null : "support")
+                }
               >
-                Notice ▼
+                Support
               </p>
-              {openDropdown === "notice" && (
-                <div className="absolute top-full mt-1 bg-[#20265B] border border-gray-700 rounded shadow-lg w-[160px] z-20">
+              {openDropdown === "support" && (
+                <div className="absolute top-full mt-1 bg-[#a7aba8] rounded shadow-lg md:w-[200px] z-20">
                   <ul>
                     <li
                       className="flex items-center gap-2 px-4 py-2 hover:bg-gray-700 cursor-pointer"
-                      onClick={() => navigate("/notice/latest")}
+                      onClick={() => navigate("/about/company")}
                     >
-                      <FaBell /> Latest
+                      <FaInfoCircle /> Docs
                     </li>
                     <li
                       className="flex items-center gap-2 px-4 py-2 hover:bg-gray-700 cursor-pointer"
-                      onClick={() => navigate("/notice/archive")}
+                      onClick={() => navigate("/about/team")}
                     >
-                      <FaBell /> Archive
+                      <FaInfoCircle /> Help Center
                     </li>
                   </ul>
                 </div>
               )}
             </div>
 
-            {/* Gallery */}
-            <div className="relative">
-              <p className="cursor-pointer hover:text-gray-400 select-none">Gallery</p>
-            </div>
-
-            {/* Contact Us */}
+            {/** Explore */}
             <div className="relative">
               <p
                 className="cursor-pointer hover:text-gray-400 select-none"
-                onClick={() => toggleDropdown("contact")}
+                onClick={() =>
+                  setOpenDropdown(openDropdown === "explore" ? null : "explore")
+                }
               >
-                Contact Us ▼
+                Explore
               </p>
-              {openDropdown === "contact" && (
-                <div className="absolute top-full mt-1 bg-[#20265B] border border-gray-700 rounded shadow-lg w-[160px] z-20">
+              {openDropdown === "explore" && (
+                <div className="absolute top-full mt-1 bg-[#a7aba8] rounded shadow-lg md:w-[200px] z-20">
                   <ul>
                     <li
                       className="flex items-center gap-2 px-4 py-2 hover:bg-gray-700 cursor-pointer"
-                      onClick={() => navigate("/contact/email")}
+                      onClick={() => navigate("/about/company")}
                     >
-                      <FaPhone /> Email
+                      <FaInfoCircle /> Blog
                     </li>
                     <li
                       className="flex items-center gap-2 px-4 py-2 hover:bg-gray-700 cursor-pointer"
-                      onClick={() => navigate("/contact/phone")}
+                      onClick={() => navigate("/about/team")}
                     >
-                      <FaPhone /> Phone
+                      <FaInfoCircle /> News
+                    </li>
+                  </ul>
+                </div>
+              )}
+            </div>
+
+            {/** Partners */}
+            <div className="relative">
+              <p
+                className="cursor-pointer hover:text-gray-400 select-none"
+                onClick={() =>
+                  setOpenDropdown(openDropdown === "partner" ? null : "partner")
+                }
+              >
+                Our Partners
+              </p>
+              {openDropdown === "partner" && (
+                <div className="absolute top-full mt-1 bg-[#a7aba8] rounded shadow-lg md:w-[200px] z-20">
+                  <ul>
+                    <li
+                      className="flex items-center gap-2 px-4 py-2 hover:bg-gray-700 cursor-pointer"
+                      onClick={() => navigate("/about/company")}
+                    >
+                      <FaInfoCircle /> Partner 1
+                    </li>
+                    <li
+                      className="flex items-center gap-2 px-4 py-2 hover:bg-gray-700 cursor-pointer"
+                      onClick={() => navigate("/about/team")}
+                    >
+                      <FaInfoCircle /> Partner 2
                     </li>
                   </ul>
                 </div>
