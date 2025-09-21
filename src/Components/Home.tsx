@@ -241,7 +241,7 @@ const Home = () => {
 
       {/* About-Us */}
       <div
-        className="relative w-full h-[700px] bg-black text-white flex items-center justify-center overflow-hidden"
+        className="relative w-full h-[750px] bg-black text-white flex items-center justify-center overflow-hidden"
         style={{
           backgroundImage: `url(${world})`,
           backgroundSize: "cover",
