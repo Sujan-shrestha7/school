@@ -1,8 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSwipeable } from "react-swipeable";
 import Header from "./Header";
 import homeimg from "../assets/images/home.jpg";
 import homevideo from "../assets/videos/video2.mp4";
 import sidebarlogo from "../assets/images/sidebarlogo.png";
+import world from "../assets/images/world.png";
+import board from "../assets/images/board.webp";
 import Footer from "./Footer";
 
 // Type for video
@@ -39,8 +42,26 @@ const videos: Video[] = [
   },
 ];
 
+const images = [homeimg, sidebarlogo, board];
+
 const Home = () => {
   const [selectedVideo, setSelectedVideo] = useState<Video | null>(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  // Auto Slide (loop every 5s)
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % images.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
+  // Swipe handlers
+  const handlers = useSwipeable({
+    onSwipedLeft: () => setCurrentIndex((prev) => (prev + 1) % images.length),
+    onSwipedRight: () =>
+      setCurrentIndex((prev) => (prev - 1 + images.length) % images.length),
+    trackMouse: true,
+  });
 
   return (
     <div>
@@ -67,7 +88,13 @@ const Home = () => {
             </h2>
             <div>
               <p className="text-gray-700 text-justify">
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nam voluptate culpa atque natus officia illum, nihil, assumenda autem excepturi hic dolores officiis cumque, ad quaerat! Molestiae vel ab blanditiis nulla officiis. Itaque qui dignissimos laudantium facere explicabo. Ducimus repudiandae magnam facere, fuga maxime quaerat, possimus blanditiis aut, ipsum perspiciatis dolorem!
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nam
+                voluptate culpa atque natus officia illum, nihil, assumenda
+                autem excepturi hic dolores officiis cumque, ad quaerat!
+                Molestiae vel ab blanditiis nulla officiis. Itaque qui
+                dignissimos laudantium facere explicabo. Ducimus repudiandae
+                magnam facere, fuga maxime quaerat, possimus blanditiis aut,
+                ipsum perspiciatis dolorem!
               </p>
             </div>
           </div>
@@ -77,7 +104,11 @@ const Home = () => {
             </h2>
             <div>
               <p className="text-gray-700 text-justify">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, illum provident vero inventore quis qui, ab itaque quisquam natus, dolor aliquam beatae a at ad officiis omnis placeat. Ad cumque hic odit eligendi doloremque maiores aspernatur fugiat iusto. Autem, saepe! Nostrum vitae autem ipsa ducimus.
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim,
+                illum provident vero inventore quis qui, ab itaque quisquam
+                natus, dolor aliquam beatae a at ad officiis omnis placeat. Ad
+                cumque hic odit eligendi doloremque maiores aspernatur fugiat
+                iusto. Autem, saepe! Nostrum vitae autem ipsa ducimus.
               </p>
             </div>
           </div>
@@ -87,7 +118,12 @@ const Home = () => {
             </h2>
             <div>
               <p className="text-gray-700 text-justify">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab animi saepe repellendus, reiciendis accusamus harum tempore officiis obcaecati iure consequuntur exercitationem alias autem in unde ducimus! Mollitia cum delectus dolorem sunt reiciendis, voluptatem atque sed perspiciatis tenetur nesciunt ad. Nihil blanditiis sint hic dolores quod?
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab
+                animi saepe repellendus, reiciendis accusamus harum tempore
+                officiis obcaecati iure consequuntur exercitationem alias autem
+                in unde ducimus! Mollitia cum delectus dolorem sunt reiciendis,
+                voluptatem atque sed perspiciatis tenetur nesciunt ad. Nihil
+                blanditiis sint hic dolores quod?
               </p>
             </div>
           </div>
@@ -111,11 +147,11 @@ const Home = () => {
         <h2 className="text-2xl font-bold mb-6">Videos from our clients</h2>
 
         {/* Horizontal scrollable cards */}
-        <div className="flex gap-6 overflow-x-auto scrollbar-hide">
+        <div className="flex gap-6 overflow-x-auto md:px-[30px] scrollbar-hide">
           {videos.map((video) => (
             <div
               key={video.id}
-              className="relative min-w-[300px] h-56 rounded-xl overflow-hidden cursor-pointer"
+              className="relative min-w-[300px] h-[400px] rounded-xl overflow-hidden cursor-pointer"
               onClick={() => setSelectedVideo(video)}
             >
               <img
@@ -149,21 +185,12 @@ const Home = () => {
         {selectedVideo && (
           <div
             className="fixed inset-0 bg-black/80 flex items-center justify-center z-50"
-            onClick={() => setSelectedVideo(null)} // close when clicking outside
+            onClick={() => setSelectedVideo(null)}
           >
             <div
               className="relative bg-black rounded-xl max-w-3xl w-full"
-              onClick={(e) => e.stopPropagation()} // prevent closing when clicking inside
+              onClick={(e) => e.stopPropagation()}
             >
-              <button
-                className="absolute top-2 right-2 text-white text-2xl cursor-pointer"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setSelectedVideo(null); // ✅ close when clicking X
-                }}
-              >
-                ✖
-              </button>
               <video
                 key={selectedVideo.id}
                 controls
@@ -175,7 +202,70 @@ const Home = () => {
           </div>
         )}
       </div>
-      <Footer/>
+
+      {/* Slider */}
+
+      <div
+        {...handlers}
+        className="relative w-full h-screen overflow-hidden cursor-pointer p-[20px] md:py-[80px]"
+      >
+        {/* Slides Wrapper */}
+        <div
+          className="flex h-full transition-transform duration-1000 ease-in-out"
+          style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+        >
+          {images.map((img, index) => (
+            <div
+              key={index}
+              className="w-full flex-shrink-0 h-full bg-center bg-cover"
+              style={{ backgroundImage: `url(${img})` }}
+            ></div>
+          ))}
+        </div>
+
+        {/* Pagination Dots */}
+        <div className="absolute bottom-8 left-0 right-0 flex justify-center gap-3 z-10">
+          {images.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentIndex(index)}
+              className={`w-3 h-3 rounded-full border-2 transition-all ${
+                currentIndex === index
+                  ? "bg-blue-500 border-blue-500 scale-110"
+                  : "bg-white border-gray-400 opacity-60 hover:opacity-100"
+              }`}
+            ></button>
+          ))}
+        </div>
+      </div>
+
+      {/* About-Us */}
+      <div
+        className="relative w-full h-[700px] bg-black text-white flex items-center justify-center overflow-hidden"
+        style={{
+          backgroundImage: `url(${world})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundAttachment: "fixed",
+        }}
+      >
+        {/* Animated Text */}
+        <div className="text-4xl text-center  md:px-[100px] flex flex-col gap-y-[20px]">
+          About Us
+          <div className="flex flex items-center justify-center flex-col gap-y-[50px]">
+            <p className="text-2xl ">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum
+              voluptate asperiores illo minima? Voluptates voluptate officia
+              aperiam maxime amet fuga commodi iusto, fugiat non dolorum
+              delectus totam ea blanditiis quisquam?
+            </p>
+            <button className="rounded-[5px] bg-[#062a7d] w-[200px] text-[18px] text-center">
+              Learn More
+            </button>
+          </div>
+        </div>
+      </div>
+      <Footer />
     </div>
   );
 };
