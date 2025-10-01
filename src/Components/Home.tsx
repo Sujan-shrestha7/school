@@ -204,20 +204,19 @@ const Home = () => {
       </div>
 
       {/* Slider */}
-
       <div
         {...handlers}
         className="relative w-full h-screen overflow-hidden cursor-pointer p-[20px] md:py-[80px]"
       >
         {/* Slides Wrapper */}
         <div
-          className="flex h-full transition-transform duration-1000 ease-in-out"
+          className="flex gap-[30px] h-full transition-transform duration-2000 ease-in-out"
           style={{ transform: `translateX(-${currentIndex * 100}%)` }}
         >
           {images.map((img, index) => (
             <div
               key={index}
-              className="w-full flex-shrink-0 h-full bg-center bg-cover"
+              className="w-full flex-shrink-0 h-[550px] rounded-[10px] bg-center bg-cover"
               style={{ backgroundImage: `url(${img})` }}
             ></div>
           ))}

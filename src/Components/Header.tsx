@@ -89,7 +89,7 @@ const Header = (): JSX.Element => {
           {/* Logo */}
           <img
             src={logo}
-            className="h-[80px] w-[160px] md:h-[145px] md:w-[300px] object-contain"
+            className="h-[80px] w-[160px] md:h-[200px] md:w-[300px] object-contain md:pt-[10px]"
             alt="Logo"
           />
 
