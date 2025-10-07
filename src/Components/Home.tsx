@@ -47,7 +47,6 @@ const images = [homeimg, sidebarlogo, board];
 const Home = () => {
   const [selectedVideo, setSelectedVideo] = useState<Video | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
-  // Auto Slide (loop every 5s)
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % images.length);
@@ -65,7 +64,9 @@ const Home = () => {
 
   return (
     <div>
+      <div className="sticky top-0 z-50 bg-white shadow-md">
       <Header />
+    </div>
 
       {/* Video Section */}
       <div className="relative w-full h-[500px] md:h-screen">
@@ -216,7 +217,7 @@ const Home = () => {
           {images.map((img, index) => (
             <div
               key={index}
-              className="w-full flex-shrink-0 h-[550px] rounded-[10px] bg-center bg-cover"
+              className="md:w-full flex-shrink-0 h-[550px] rounded-[10px] bg-center bg-cover"
               style={{ backgroundImage: `url(${img})` }}
             ></div>
           ))}
