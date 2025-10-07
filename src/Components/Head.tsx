@@ -85,7 +85,7 @@ const Head = (): JSX.Element => {
     <header className="absolute top-0 left-0 w-full z-50 bg-[#000000]" ref={dropdownRef}>
       {/* Top Header */}
       <div className="w-full bg-transparent">
-        <div className="flex justify-between items-center px-6 md:px-[100px] h-[80px]">
+        <div className="flex justify-between items-center pr-6 md:pr-[100px] md:pl-[30px] h-[80px]">
           {/* Logo */}
           <img
             src={logo}
@@ -167,54 +167,6 @@ const Head = (): JSX.Element => {
             ))}
           </div>
         )}
-      </div>
-
-      {/* Bottom Bar */}
-      <div className="flex flex-wrap justify-between items-center h-[40px] w-full px-6 md:px-[200px] bg-transparent">
-        <div className="flex flex-wrap items-center gap-3 text-sm md:gap-[15px] text-white">
-          <a
-            href="mailto:mail@gmail.com"
-            className="hover:text-gray-300 transition-colors"
-          >
-            mail@gmail.com
-          </a>
-          <div className="hidden md:block w-[2px] h-[20px] bg-[#2E65B8]"></div>
-          <a
-            href="tel:9823252414"
-            className="hover:text-gray-300 transition-colors"
-          >
-            Contact: 9823252414
-          </a>
-        </div>
-        <div className="flex gap-4 md:gap-[20px] text-white text-[20px] md:text-[25px]">
-          <a
-            href="https://facebook.com"
-            target="_blank"
-            aria-label="Facebook"
-            rel="noopener noreferrer"
-            className="hover:text-gray-300 transition-colors"
-          >
-            <FaFacebook />
-          </a>
-          <a
-            href="https://youtube.com"
-            target="_blank"
-            aria-label="YouTube"
-            rel="noopener noreferrer"
-            className="hover:text-gray-300 transition-colors"
-          >
-            <FaYoutube />
-          </a>
-          <a
-            href="https://linkedin.com"
-            target="_blank"
-            aria-label="LinkedIn"
-            rel="noopener noreferrer"
-            className="hover:text-gray-300 transition-colors"
-          >
-            <FaLinkedin />
-          </a>
-        </div>
       </div>
     </header>
   );

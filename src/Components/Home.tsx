@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useSwipeable } from "react-swipeable";
 import Header from "./Header";
+import Head from "./Head";
 import homeimg from "../assets/images/home.jpg";
 import homevideo from "../assets/videos/video2.mp4";
 import sidebarlogo from "../assets/images/sidebarlogo.png";
@@ -47,6 +48,20 @@ const images = [homeimg, sidebarlogo, board];
 const Home = () => {
   const [selectedVideo, setSelectedVideo] = useState<Video | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [showHead, setShowHead] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > window.innerHeight) {
+        setShowHead(true);
+      } else {
+        setShowHead(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % images.length);
@@ -64,9 +79,9 @@ const Home = () => {
 
   return (
     <div>
-      <div className="sticky top-0 z-50 bg-white shadow-md">
-      <Header />
-    </div>
+      <div className="sticky top-0 z-50 bg-[#000000] shadow-md transition-all duration-500">
+        {showHead ? <Head /> : <Header />}
+      </div>
 
       {/* Video Section */}
       <div className="relative w-full h-[500px] md:h-screen">
