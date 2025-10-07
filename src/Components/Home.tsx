@@ -253,7 +253,7 @@ const Home = () => {
         <div className="text-4xl text-center  md:px-[100px] flex flex-col gap-y-[20px]">
           About Us
           <div className="flex flex items-center justify-center flex-col gap-y-[50px]">
-            <p className="text-2xl ">
+            <p className="md:text-2xl text-[14px]">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum
               voluptate asperiores illo minima? Voluptates voluptate officia
               aperiam maxime amet fuga commodi iusto, fugiat non dolorum
