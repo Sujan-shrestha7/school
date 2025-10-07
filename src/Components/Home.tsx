@@ -217,7 +217,7 @@ const Home = () => {
           {images.map((img, index) => (
             <div
               key={index}
-              className="md:w-full flex-shrink-0 h-[550px] rounded-[10px] bg-center bg-cover"
+              className="w-full flex-shrink-0 h-auto rounded-[10px] bg-center bg-cover"
               style={{ backgroundImage: `url(${img})` }}
             ></div>
           ))}
