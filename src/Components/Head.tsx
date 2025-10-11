@@ -2,9 +2,6 @@ import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import logo from "../assets/images/maxhub.png";
 import {
-  FaFacebook,
-  FaYoutube,
-  FaLinkedin,
   FaInfoCircle,
   FaBars,
   FaTimes,
