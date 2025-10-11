@@ -8,6 +8,7 @@ import sidebarlogo from "../assets/images/sidebarlogo.png";
 import world from "../assets/images/world.png";
 import board from "../assets/images/board.webp";
 import Footer from "./Footer";
+import { motion } from "framer-motion";
 
 // Type for video
 type Video = {
@@ -79,7 +80,7 @@ const Home = () => {
 
   return (
     <div>
-      <div className="sticky top-0 z-50 bg-[#000000] shadow-md transition-all duration-500">
+      <div className="sticky top-0 z-50 bg-[#000000] shadow-md transition-all duration-1000">
         {showHead ? <Head /> : <Header />}
       </div>
 
@@ -96,68 +97,68 @@ const Home = () => {
       </div>
 
       {/* Events / FEATURES Section */}
-      <div className="my-16 md:pl-[200px] px-[20px] flex flex-col md:flex-row gap-[50px]">
-        <div className="w-full md:w-[500px] h-screen flex flex-col gap-20 pt-[100px] md:pt-[150px] md:pr-[0px] justify-center">
-          <div className="flex-1 flex flex-col gap-4 gap-y-6">
-            <h2 className="font-semibold text-xl text-center text-[#10507a]">
-              EVENTS/ NOTICE
+      <div className="px-[20px] md:px-[100px] py-[40px] md:py-[80px] flex flex-col gap-y-[80px] overflow-hidden">
+        {/* Section 1 (slides in from left) */}
+        <motion.div
+          className="w-full flex flex-col md:flex-row items-center justify-center gap-10 md:gap-20"
+          initial={{ x: -150, opacity: 0 }}
+          whileInView={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.9, ease: "easeOut" }}
+          viewport={{ once: true, amount: 0.2 }}
+        >
+          {/* Text */}
+          <div className="flex-1 flex flex-col gap-4">
+            <h2 className="font-semibold text-xl md:text-2xl text-center text-[#10507a]">
+              EVENTS / NOTICE
             </h2>
-            <div>
-              <p className="text-gray-700 text-justify">
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nam
-                voluptate culpa atque natus officia illum, nihil, assumenda
-                autem excepturi hic dolores officiis cumque, ad quaerat!
-                Molestiae vel ab blanditiis nulla officiis. Itaque qui
-                dignissimos laudantium facere explicabo. Ducimus repudiandae
-                magnam facere, fuga maxime quaerat, possimus blanditiis aut,
-                ipsum perspiciatis dolorem!
-              </p>
-            </div>
+            <p className="text-gray-700 text-justify text-sm md:text-base leading-relaxed">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam
+              voluptate culpa atque natus officia illum, nihil, assumenda autem
+              excepturi hic dolores officiis cumque, ad quaerat! Molestiae vel
+              ab blanditiis nulla officiis. Itaque qui dignissimos laudantium
+              facere explicabo. Ducimus repudiandae magnam facere, fuga maxime
+              quaerat, possimus blanditiis aut, ipsum perspiciatis dolorem!
+            </p>
           </div>
-          <div className="flex-1 flex flex-col gap-4 gap-y-6">
-            <h2 className="font-semibold text-xl text-center text-[#10507a]">
-              FEATURES
-            </h2>
-            <div>
-              <p className="text-gray-700 text-justify">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim,
-                illum provident vero inventore quis qui, ab itaque quisquam
-                natus, dolor aliquam beatae a at ad officiis omnis placeat. Ad
-                cumque hic odit eligendi doloremque maiores aspernatur fugiat
-                iusto. Autem, saepe! Nostrum vitae autem ipsa ducimus.
-              </p>
-            </div>
-          </div>
-          <div className="flex-1 flex flex-col gap-4 gap-y-6">
-            <h2 className="font-semibold text-xl text-center text-[#10507a]">
-              FEATURES
-            </h2>
-            <div>
-              <p className="text-gray-700 text-justify">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab
-                animi saepe repellendus, reiciendis accusamus harum tempore
-                officiis obcaecati iure consequuntur exercitationem alias autem
-                in unde ducimus! Mollitia cum delectus dolorem sunt reiciendis,
-                voluptatem atque sed perspiciatis tenetur nesciunt ad. Nihil
-                blanditiis sint hic dolores quod?
-              </p>
-            </div>
-          </div>
-        </div>
-        <div className="flex flex-col gap-y-[50px]">
-          <img
-            src={sidebarlogo}
-            className="rounded-[10px] md:h-[400px] md:w-[650px]"
-            alt=""
-          />
-          <img
-            src={sidebarlogo}
-            className="rounded-[10px] md:h-[400px] md:w-[650px]"
-            alt=""
-          />
-        </div>
-      </div>
 
+          {/* Image */}
+          <img
+            src={sidebarlogo}
+            className="rounded-[10px] w-full md:w-[650px] h-auto md:h-[400px] object-cover"
+            alt="Events"
+          />
+        </motion.div>
+
+        {/* Section 2 (slides in from right) */}
+        <motion.div
+          className="w-full flex flex-col-reverse md:flex-row items-center justify-center gap-10 md:gap-20"
+          initial={{ x: 150, opacity: 0 }}
+          whileInView={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.9, ease: "easeOut" }}
+          viewport={{ once: true, amount: 0.2 }}
+        >
+          {/* Image */}
+          <img
+            src={sidebarlogo}
+            className="rounded-[10px] w-full md:w-[650px] h-auto md:h-[400px] object-cover"
+            alt="Features"
+          />
+
+          {/* Text */}
+          <div className="flex-1 flex flex-col gap-4">
+            <h2 className="font-semibold text-xl md:text-2xl text-center text-[#10507a]">
+              FEATURES
+            </h2>
+            <p className="text-gray-700 text-justify text-sm md:text-base leading-relaxed">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim,
+              illum provident vero inventore quis qui, ab itaque quisquam natus,
+              dolor aliquam beatae a at ad officiis omnis placeat. Ad cumque hic
+              odit eligendi doloremque maiores aspernatur fugiat iusto. Autem,
+              saepe! Nostrum vitae autem ipsa ducimus.
+            </p>
+          </div>
+        </motion.div>
+      </div>
       {/* 🎥 Video Carousel Section */}
       <div className="w-full px-6 py-10">
         <h2 className="text-2xl font-bold mb-6">Videos from our clients</h2>
