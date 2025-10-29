@@ -160,10 +160,6 @@ const Home = () => {
       </div>{" "}
       <div className="flex flex-col gap-8">
         <motion.div
-          initial={{ x: 200, opacity: 0 }}
-          whileInView={{ x: 0, opacity: 1 }}
-          transition={{ duration: 1, ease: "easeOut" }}
-          viewport={{ once: true }}
         >
           <div
             className="relative w-full h-[750px] bg-black text-white flex items-center justify-center overflow-hidden"
