@@ -5,10 +5,11 @@ import Head from "./Head";
 import homeimg from "../assets/images/home.jpg";
 import homevideo from "../assets/videos/video2.mp4";
 import world from "../assets/images/world.png";
-import board from "../assets/images/board.webp";
-import featureimg1 from "../assets/images/featureimg1.png";
+import featureimg1 from "../assets/images/featureimg1.jpg";
+import maxhubboards from "../assets/images/maxhubboards.jpg";
 import Footer from "./Footer";
 import { motion } from "framer-motion";
+import lefttoright from "../assets/images/lefttorightpen.jpg"
 
 // Type for video
 type Video = {
@@ -44,7 +45,7 @@ const videos: Video[] = [
   },
 ];
 
-const images = [homeimg, featureimg1, board];
+const images = [homeimg, featureimg1, maxhubboards];
 
 const Home = () => {
   const [selectedVideo, setSelectedVideo] = useState<Video | null>(null);
@@ -66,7 +67,7 @@ const Home = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % images.length);
-    }, 3000);
+    }, 5000);
     return () => clearInterval(interval);
   }, []);
 
@@ -123,7 +124,7 @@ const Home = () => {
 
           {/* Image */}
           <img
-            src={featureimg1}
+            src={maxhubboards}
             className="rounded-[10px] w-full md:w-[650px] h-auto md:h-[400px] object-cover"
             alt="Events"
           />
@@ -158,7 +159,28 @@ const Home = () => {
             </p>
           </div>
         </motion.div>
-      </div>
+      </div> <div className="flex flex-col gap-8">
+      {/* First Image: Slide in from left */}
+      <motion.div
+        initial={{ x: -200, opacity: 0 }}
+        whileInView={{ x: 0, opacity: 1 }}
+        transition={{ duration: 1, ease: "easeOut" }}
+        viewport={{ once: true }}
+      >
+        <img src={lefttoright} alt="Maxhub Board" className="w-full" />
+      </motion.div>
+
+      {/* Second Image: Slide in from right */}
+      <motion.div
+        initial={{ x: 200, opacity: 0 }}
+        whileInView={{ x: 0, opacity: 1 }}
+        transition={{ duration: 1, ease: "easeOut" }}
+        viewport={{ once: true }}
+      >
+        <img src={maxhubboards} alt="Maxhub Board" className="w-full" />
+      </motion.div>
+    </div>
+
       {/* 🎥 Video Carousel Section */}
       <div className="w-full px-6 py-10">
         <h2 className="text-2xl font-bold mb-6">Videos from our clients</h2>
@@ -227,13 +249,13 @@ const Home = () => {
       >
         {/* Slides Wrapper */}
         <div
-          className="flex gap-[30px] h-full transition-transform duration-2000 ease-in-out"
+          className="flex gap-[30px] h-full transition-transform duration-5000 ease-in-out"
           style={{ transform: `translateX(-${currentIndex * 100}%)` }}
         >
           {images.map((img, index) => (
             <div
               key={index}
-              className="w-full flex-shrink-0 h-auto rounded-[10px] bg-center bg-cover"
+              className="w-full flex-shrink-0 h-screen rounded-[10px] bg-center bg-cover"
               style={{ backgroundImage: `url(${img})` }}
             ></div>
           ))}
