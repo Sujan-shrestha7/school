@@ -4,9 +4,9 @@ import Header from "./Header";
 import Head from "./Head";
 import homeimg from "../assets/images/home.jpg";
 import homevideo from "../assets/videos/video2.mp4";
-import sidebarlogo from "../assets/images/sidebarlogo.png";
 import world from "../assets/images/world.png";
 import board from "../assets/images/board.webp";
+import featureimg1 from "../assets/images/featureimg1.png";
 import Footer from "./Footer";
 import { motion } from "framer-motion";
 
@@ -44,7 +44,7 @@ const videos: Video[] = [
   },
 ];
 
-const images = [homeimg, sidebarlogo, board];
+const images = [homeimg, featureimg1, board];
 
 const Home = () => {
   const [selectedVideo, setSelectedVideo] = useState<Video | null>(null);
@@ -123,7 +123,7 @@ const Home = () => {
 
           {/* Image */}
           <img
-            src={sidebarlogo}
+            src={featureimg1}
             className="rounded-[10px] w-full md:w-[650px] h-auto md:h-[400px] object-cover"
             alt="Events"
           />
@@ -139,7 +139,7 @@ const Home = () => {
         >
           {/* Image */}
           <img
-            src={sidebarlogo}
+            src={featureimg1}
             className="rounded-[10px] w-full md:w-[650px] h-auto md:h-[400px] object-cover"
             alt="Features"
           />
