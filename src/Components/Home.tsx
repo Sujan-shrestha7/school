@@ -9,7 +9,7 @@ import featureimg1 from "../assets/images/featureimg1.jpg";
 import maxhubboards from "../assets/images/maxhubboards.jpg";
 import Footer from "./Footer";
 import { motion } from "framer-motion";
-import lefttoright from "../assets/images/lefttorightpen.jpg"
+import lefttoright from "../assets/images/lefttorightpen.jpg";
 
 // Type for video
 type Video = {
@@ -84,7 +84,6 @@ const Home = () => {
       <div className="sticky top-0 z-50 bg-[#000000] shadow-md transition-all duration-1000">
         {showHead ? <Head /> : <Header />}
       </div>
-
       {/* Video Section */}
       <div className="relative w-full h-[500px] md:h-screen">
         <div className="relative w-full h-[500px] md:h-screen">
@@ -96,7 +95,6 @@ const Home = () => {
           <div className="absolute inset-0 bg-black bg-opacity-50"></div>
         </div>
       </div>
-
       {/* Events / FEATURES Section */}
       <div className="px-[20px] md:px-[100px] py-[40px] md:py-[80px] flex flex-col gap-y-[80px] overflow-hidden">
         {/* Section 1 (slides in from left) */}
@@ -159,28 +157,25 @@ const Home = () => {
             </p>
           </div>
         </motion.div>
-      </div> <div className="flex flex-col gap-8">
-      {/* First Image: Slide in from left */}
-      <motion.div
-        initial={{ x: -200, opacity: 0 }}
-        whileInView={{ x: 0, opacity: 1 }}
-        transition={{ duration: 1, ease: "easeOut" }}
-        viewport={{ once: true }}
-      >
-        <img src={lefttoright} alt="Maxhub Board" className="w-full" />
-      </motion.div>
-
-      {/* Second Image: Slide in from right */}
-      <motion.div
-        initial={{ x: 200, opacity: 0 }}
-        whileInView={{ x: 0, opacity: 1 }}
-        transition={{ duration: 1, ease: "easeOut" }}
-        viewport={{ once: true }}
-      >
-        <img src={maxhubboards} alt="Maxhub Board" className="w-full" />
-      </motion.div>
-    </div>
-
+      </div>{" "}
+      <div className="flex flex-col gap-8">
+        <motion.div
+          initial={{ x: 200, opacity: 0 }}
+          whileInView={{ x: 0, opacity: 1 }}
+          transition={{ duration: 1, ease: "easeOut" }}
+          viewport={{ once: true }}
+        >
+          <div
+            className="relative w-full h-[750px] bg-black text-white flex items-center justify-center overflow-hidden"
+            style={{
+              backgroundImage: `url(${maxhubboards})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundAttachment: "fixed",
+            }}
+          ></div>
+        </motion.div>
+      </div>
       {/* 🎥 Video Carousel Section */}
       <div className="w-full px-6 py-10">
         <h2 className="text-2xl font-bold mb-6">Videos from our clients</h2>
@@ -241,7 +236,6 @@ const Home = () => {
           </div>
         )}
       </div>
-
       {/* Slider */}
       <div
         {...handlers}
@@ -276,7 +270,6 @@ const Home = () => {
           ))}
         </div>
       </div>
-
       {/* About-Us */}
       <div
         className="relative w-full h-[750px] bg-black text-white flex items-center justify-center overflow-hidden"
