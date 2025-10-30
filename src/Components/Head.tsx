@@ -79,10 +79,10 @@ const Head = (): JSX.Element => {
   ];
 
   return (
-    <header className="absolute top-0 left-0 w-full z-50 bg-[#000000]" ref={dropdownRef}>
+    <header className="absolute top-0 left-0 w-full z-50 bg-[#03124f]" ref={dropdownRef}>
       {/* Top Header */}
       <div className="w-full bg-transparent">
-        <div className="flex justify-between items-center pr-6 md:pr-[100px] md:pl-[30px] h-[80px]">
+        <div className="flex justify-between items-center pr-6 md:pr-[100px] md:pl-[30px] h-[70px]">
           {/* Logo */}
           <img
             src={logo}
