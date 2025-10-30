@@ -179,8 +179,8 @@ const Home = () => {
 
         {/* Your content in the center */}
         <div className="relative z-10 text-center">
-          <h1 className="text-5xl font-bold mb-4">Welcome to Our Site</h1>
-          <p className="text-xl">Your text or buttons can go here</p>
+          <h1 className="text-5xl font-bold mb-4">Maxhub Digital Board Nepal</h1>
+          <p className="text-xl">Your journey towards Success</p>
         </div>
       </div>
     </div>
