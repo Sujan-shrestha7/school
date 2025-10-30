@@ -9,6 +9,7 @@ import featureimg1 from "../assets/images/featureimg1.jpg";
 import maxhubboards from "../assets/images/maxhubboards.jpg";
 import Footer from "./Footer";
 import { motion, AnimatePresence } from "framer-motion";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 // Type for video
 type Video = {
@@ -69,6 +70,13 @@ const Home = () => {
     }, 5000);
     return () => clearInterval(interval);
   }, []);
+  const nextSlide = () => {
+    setCurrentIndex((prev) => (prev + 1) % images.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
+  };
 
   // Swipe handlers
   const handlers = useSwipeable({
@@ -157,7 +165,7 @@ const Home = () => {
           </div>
         </motion.div>
       </div>{" "}
-       <div className="flex flex-col gap-8">
+      <div className="flex flex-col gap-8">
       <div className="relative w-full h-[750px] bg-black text-white flex items-center justify-center overflow-hidden">
         <AnimatePresence>
           <motion.div
@@ -174,13 +182,40 @@ const Home = () => {
           />
         </AnimatePresence>
 
-        {/* Optional dark overlay for better contrast */}
+        {/* Dark overlay */}
         <div className="absolute inset-0 bg-black/40" />
 
-        {/* Your content in the center */}
+        {/* Centered content */}
         <div className="relative z-10 text-center">
-          <h1 className="text-4xl md-text-4xl font-bold mb-4">Maxhub Digital Board Nepal</h1>
-          <p className="text-xl">Your journey towards Success</p>
+          <h1 className="text-5xl font-bold mb-4">Welcome to Our Website</h1>
+          <p className="text-xl">Modern design. Smooth transitions. Easy navigation.</p>
+        </div>
+
+        {/* Navigation Buttons */}
+        <button
+          onClick={prevSlide}
+          className="absolute left-5 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white p-3 rounded-full transition"
+        >
+          <ChevronLeft size={28} />
+        </button>
+        <button
+          onClick={nextSlide}
+          className="absolute right-5 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/70 text-white p-3 rounded-full transition"
+        >
+          <ChevronRight size={28} />
+        </button>
+
+        {/* Dots Indicator */}
+        <div className="absolute bottom-8 flex gap-3 justify-center w-full z-10">
+          {images.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setCurrentIndex(i)}
+              className={`w-3 h-3 rounded-full transition-all ${
+                i === currentIndex ? "bg-white scale-125" : "bg-gray-400"
+              }`}
+            ></button>
+          ))}
         </div>
       </div>
     </div>
