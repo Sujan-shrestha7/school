@@ -8,7 +8,6 @@ import world from "../assets/images/world.png";
 import featureimg1 from "../assets/images/featureimg1.jpg";
 import maxhubboards from "../assets/images/maxhubboards.jpg";
 import Footer from "./Footer";
-import lefttoright from "../assets/images/lefttorightpen.jpg";
 import { motion, AnimatePresence } from "framer-motion";
 
 // Type for video
