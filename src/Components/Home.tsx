@@ -8,8 +8,8 @@ import world from "../assets/images/world.png";
 import featureimg1 from "../assets/images/featureimg1.jpg";
 import maxhubboards from "../assets/images/maxhubboards.jpg";
 import Footer from "./Footer";
-import { motion } from "framer-motion";
 import lefttoright from "../assets/images/lefttorightpen.jpg";
+import { motion, AnimatePresence } from "framer-motion";
 
 // Type for video
 type Video = {
@@ -158,20 +158,33 @@ const Home = () => {
           </div>
         </motion.div>
       </div>{" "}
-      <div className="flex flex-col gap-8">
-        <motion.div
-        >
-          <div
-            className="relative w-full h-[750px] bg-black text-white flex items-center justify-center overflow-hidden"
+       <div className="flex flex-col gap-8">
+      <div className="relative w-full h-[750px] bg-black text-white flex items-center justify-center overflow-hidden">
+        <AnimatePresence>
+          <motion.div
+            key={currentIndex}
+            className="absolute top-0 left-0 w-full h-full bg-cover bg-center"
             style={{
-              backgroundImage: `url(${maxhubboards})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
+              backgroundImage: `url(${images[currentIndex]})`,
               backgroundAttachment: "fixed",
             }}
-          ></div>
-        </motion.div>
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1.2, ease: "easeInOut" }}
+          />
+        </AnimatePresence>
+
+        {/* Optional dark overlay for better contrast */}
+        <div className="absolute inset-0 bg-black/40" />
+
+        {/* Your content in the center */}
+        <div className="relative z-10 text-center">
+          <h1 className="text-5xl font-bold mb-4">Welcome to Our Site</h1>
+          <p className="text-xl">Your text or buttons can go here</p>
+        </div>
       </div>
+    </div>
       {/* 🎥 Video Carousel Section */}
       <div className="w-full px-6 py-10">
         <h2 className="text-2xl font-bold mb-6">Videos from our clients</h2>
