@@ -327,10 +327,10 @@ const Home = () => {
   }}
 >
   {/* ABOUT MAXHUB */}
-  <div className="text-center md:px-[100px] flex flex-col items-center gap-y-[30px]">
-    <h2 className="text-4xl font-semibold tracking-wide">ABOUT MAXHUB</h2>
+  <div className="text-center md:px-[100px] flex flex-col items-center gap-y-[30px] px-6">
+    <h2 className="text-3xl md:text-4xl font-semibold tracking-wide">ABOUT MAXHUB</h2>
 
-    <div className="max-w-5xl flex flex-col gap-y-6 text-gray-300 text-[16px] md:text-[18px] leading-relaxed">
+    <div className="max-w-5xl flex flex-col gap-y-6 text-gray-300 text-[14px] md:text-[18px] leading-relaxed">
       <p>
         As an innovation-driven team, MAXHUB focuses on developing collaboration
         solutions that enable immersive communications. Since established in
@@ -345,27 +345,28 @@ const Home = () => {
       </p>
     </div>
 
-    <button className="rounded-[5px] bg-[#062a7d] hover:bg-[#0b3ecf] transition duration-300 w-[200px] text-[18px] text-center py-2 mt-4">
+    {/* Responsive Button */}
+    <button className="rounded-[5px] bg-[#062a7d] hover:bg-[#0b3ecf] transition duration-300 w-[150px] sm:w-[180px] md:w-[200px] text-[14px] sm:text-[16px] md:text-[18px] text-center py-2 md:m-0 m-4">
       Learn More
     </button>
   </div>
 
   {/* Stats Section */}
-  <div className="absolute bottom-[60px] flex flex-wrap justify-center gap-x-16 gap-y-6 text-center text-white">
+  <div className="absolute bottom-[40px] flex flex-wrap justify-center gap-x-10 md:gap-x-16 gap-y-6 text-center text-white px-4">
     <div>
-      <h3 className="text-3xl font-semibold">6500+</h3>
+      <h3 className="text-2xl md:text-3xl font-semibold">6500+</h3>
       <p className="text-gray-400 text-sm">Total Employees</p>
     </div>
     <div>
-      <h3 className="text-3xl font-semibold">30</h3>
+      <h3 className="text-2xl md:text-3xl font-semibold">30</h3>
       <p className="text-gray-400 text-sm">Average Age</p>
     </div>
     <div>
-      <h3 className="text-3xl font-semibold">60%</h3>
+      <h3 className="text-2xl md:text-3xl font-semibold">60%</h3>
       <p className="text-gray-400 text-sm">R&amp;D Engineer</p>
     </div>
     <div>
-      <h3 className="text-3xl font-semibold">US$ 3B</h3>
+      <h3 className="text-2xl md:text-3xl font-semibold">US$ 3B</h3>
       <p className="text-gray-400 text-sm">Revenue</p>
     </div>
   </div>
