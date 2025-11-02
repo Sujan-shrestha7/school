@@ -264,7 +264,7 @@ const Home = () => {
       </div>
 
       {/* ===== Second Slider (scrolls normally) ===== */}
-      <div {...handlers} className="flex flex-col gap-8 py-[80px]">
+      <div {...handlers} className="flex flex-col gap-8 py-[80px] cursor-pointer">
         <div className="relative w-full h-[750px] bg-black text-white flex items-center justify-center overflow-hidden">
           <AnimatePresence>
             <motion.div
